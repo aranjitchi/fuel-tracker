@@ -1,8 +1,10 @@
 package pt.sac.tracker.fuel.domain.veicule;
 
 import lombok.Data;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
+@Document(collection = "veicules")
 public class Motorcycle extends Veicule {
 
     public Motorcycle(String manufacturer) {
@@ -15,7 +17,7 @@ public class Motorcycle extends Veicule {
     }
 
     @Override
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 }

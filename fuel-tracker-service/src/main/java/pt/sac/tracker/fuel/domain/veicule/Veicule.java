@@ -1,33 +1,24 @@
 package pt.sac.tracker.fuel.domain.veicule;
 
+import lombok.Data;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 import pt.sac.tracker.fuel.domain.Identifiable;
 
 import java.time.LocalDateTime;
 
-@Document
-public abstract class Veicule implements Identifiable<Integer> {
-
-    public enum VeiculeType {
-        CAR,
-        MOTORCYCLE;
-    }
+@Data
+public abstract class Veicule implements Identifiable<String> {
 
     @Id
-    Integer id;
+    String id;
     Integer wheels;
     Integer passengers;
-
     Double distanceInKm;
-
     String color;
     String manufacturer;
     String model;
     String registry;
-
     LocalDateTime registryDate;
-
     LocalDateTime createdDate;
 
     public Veicule(Integer wheels, Integer passengers, String manufacturer) {
@@ -38,4 +29,9 @@ public abstract class Veicule implements Identifiable<Integer> {
     }
 
     abstract public VeiculeType type();
+
+    public enum VeiculeType {
+        CAR,
+        MOTORCYCLE
+    }
 }

@@ -3,6 +3,7 @@ package pt.sac.tracker.fuel.domain.expenses;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 import pt.sac.tracker.fuel.domain.Identifiable;
 import pt.sac.tracker.fuel.domain.veicule.Veicule;
 
@@ -11,7 +12,29 @@ import java.time.LocalDateTime;
 import java.util.Map;
 
 @Data
-public class Expenses implements Identifiable {
+@Document(collection = "expenses")
+public class Expenses implements Identifiable<String> {
+
+    @Id
+    String id;
+    Double value;
+    String place;
+    String notes;
+    LocalDateTime createdDate;
+    LocalDateTime modifiedDate;
+    ExpensesType type;
+    Veicule veicule;
+    Map<String, Object> customAttr;
+
+    public Expenses(Double value, ExpensesType type) {
+        this.value = value;
+        this.type = type;
+    }
+
+    @Override
+    public String getId() {
+        return id;
+    }
 
     public enum ExpensesType {
         DEPRECIATION,
@@ -26,31 +49,5 @@ public class Expenses implements Identifiable {
         VEHICLE_TITLES,
         TOLLS,
         PARKING_FEES;
-    }
-
-    @Id
-    Integer id;
-
-    Double value;
-    String place;
-
-    String notes;
-
-    LocalDateTime createdDate;
-    LocalDateTime modifiedDate;
-
-    ExpensesType type;
-    Veicule veicule;
-
-    Map<String, Object> customAttr;
-
-    public Expenses(Double value, ExpensesType type) {
-        this.value = value;
-        this.type = type;
-    }
-
-    @Override
-    public Serializable getId() {
-        return id;
     }
 }
