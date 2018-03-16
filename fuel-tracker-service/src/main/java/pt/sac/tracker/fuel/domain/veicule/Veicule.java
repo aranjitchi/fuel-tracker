@@ -2,11 +2,13 @@ package pt.sac.tracker.fuel.domain.veicule;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.rest.core.annotation.RestResource;
 import pt.sac.tracker.fuel.domain.Identifiable;
 
 import java.time.LocalDateTime;
 
 @Data
+@RestResource(rel = "veicules", path = "veicules")
 public abstract class Veicule implements Identifiable<String> {
 
     @Id

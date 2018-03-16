@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import pt.sac.tracker.fuel.domain.veicule.Veicule;
 
 @Repository
-@RepositoryRestResource(collectionResourceRel = "veicules", path = "veicules")
+@RepositoryRestResource(path = "veicules", collectionResourceRel = "veicules", itemResourceRel = "veicule")
 public interface VeiculeRepository extends MongoRepository<Veicule, String> {
 }
