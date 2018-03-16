@@ -3,12 +3,13 @@ MAINTAINER aranjitchi@gmail.com
 
 ENV HOME /var/lib/sac
 ENV JARFILE /var/lib/sac/app.jar
-ENV JAVA_OPTS -Xms128m -Xmx1024m
+ENV JAVA_OPTS -Xms128m -Xmx512m
+ARG JAR_FILE
 
 VOLUME /var/lib/sac
 VOLUME /var/lib/sac/data
 
-ADD fuel-tracker-service.jar /var/lib/sac/app.jar
+ADD ${JAR_FILE} /var/lib/sac/app.jar
 
 RUN chmod 500 /var/lib/sac/app.jar
 
