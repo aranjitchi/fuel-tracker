@@ -3,6 +3,7 @@ package pt.sac.tracker.fuel.domain.expenses;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import pt.sac.tracker.fuel.domain.Identifiable;
 import pt.sac.tracker.fuel.domain.veicule.Veicule;
@@ -23,6 +24,7 @@ public class Expenses implements Identifiable<String> {
     LocalDateTime createdDate;
     LocalDateTime modifiedDate;
     ExpensesType type;
+    @DBRef
     Veicule veicule;
     Map<String, Object> customAttr;
 
